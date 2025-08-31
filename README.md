@@ -3,21 +3,23 @@
 Instagram doesn't want you downloading videos to your own device. If a video isn't saved on your own machine it can be deleted at any time
 
 ```
-usage: main.py [-h] [--directory DIRECTORY]
+usage: main.py [-h] [--directory DIRECTORY] [--delay DELAY]
 
-Download Instagram videos using yt-dlp
+Download Instagram media using yt-dlp
 
 options:
   -h, --help            show this help message and exit
   --directory DIRECTORY, -d DIRECTORY
-                        Where the videos should be downloaded to (Default savedVideos)
+                        Download directory (default: ~/myDownloads)
+  --delay DELAY, -w DELAY
+                        Delay in seconds between downloads (default: 0)
 ```
 
 ## Step 1
 Go to `https://www.instagram.com/<your username>/saved/all-posts/`.
 
 ## Step 2
-Paste this into the console. It keeps a list of all seen video links loaded on the page and as you scroll theres code to only keep the current 20 or so video tiles loaded in the DOM. Therefore it polls the DOM every 200ms looking for new video tiles. You'll then need to scroll down the page as far as you want to save videos from.
+Paste this into the console. It keeps a list of all seen video links loaded on the page and as you scroll theres code to only keep the current 20 or so video tiles loaded in the DOM. Therefore it polls the DOM every 200ms looking for new video tiles. You'll then need to scroll down the page as far as you want to save videos from.gits
 ```javascript
 const seenHrefs = new Set();
 
