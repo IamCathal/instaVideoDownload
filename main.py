@@ -52,17 +52,23 @@ def validate_directory(path: str) -> str:
 
 
 def filter_post_links(links: List[str]) -> List[str]:
-    """Filter links to keep only Instagram post links (/p/)"""
+    """Filter links to keep only unique Instagram post links (/p/)"""
     post_links = []
+    seen = set()
     skipped_count = 0
+    duplicate_count = 0
 
     for link in links:
         if link.startswith('/p/'):
-            post_links.append(link)
+            if link not in seen:
+                post_links.append(link)
+                seen.add(link)
+            else:
+                duplicate_count += 1
         else:
             skipped_count += 1
 
-    logging.info(f"Filtered links: {len(post_links)} posts, {skipped_count} non-post links skipped")
+    logging.info(f"Filtered links: {len(post_links)} unique posts, {skipped_count} non-post links skipped, {duplicate_count} duplicates removed")
     return post_links
 
 
