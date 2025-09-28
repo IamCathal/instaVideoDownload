@@ -74,7 +74,7 @@ def filter_post_links(links: List[str]) -> List[str]:
 
 def process_link(link_part: str, download_dir: str):
     """Process a single link part by constructing full URL and downloading"""
-    full_url = f"https://instagram.com/{link_part}"
+    full_url = f"https://instagram.com{link_part}"
 
     try:
         cmd = f"ytdl -P {download_dir} {full_url}"
